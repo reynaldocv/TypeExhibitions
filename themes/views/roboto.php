@@ -48,7 +48,7 @@ array('dontURLEncodeParameters' => true)); ?>
 */
 $cnt = 0; 
 
-while ($o_items && $o_items->nextHit()) {    
+while ($o_items && $o_items->nextHit() && $cnt < 100) {    
   $id   = $o_items->get("ca_occurrences.occurrence_id");  
   $idno = $o_items->get("ca_occurrences.idno"); 
   $name = $o_items->get("ca_occurrences.preferred_labels"); 
@@ -71,7 +71,7 @@ while ($o_items && $o_items->nextHit()) {
         <?php 
           print "$name" ;
         ?>
-        <input type='hidden' id="type-<?php print $cnt ?>" value="<?php print $id ?>"/>        
+        <input type='hidden' id="idno-<?php print $cnt ?>" value="<?php print $id ?>"/>        
       </td>      
       <td>        
         <?php print $idno; ?>      
@@ -80,7 +80,7 @@ while ($o_items && $o_items->nextHit()) {
         <?php print $type_id; ?>      
       </td>
       <td>
-        <?php print "<div id='status-$cnt'>  </div>"; ?>
+        <?php print "<div id='status-$cnt'> $ </div>"; ?>
       </td>
     </tr>
     <?php 
@@ -124,8 +124,7 @@ print "</table><br><br><br><br><br><br><br>";
         var divStatus = "#status-" + idx.toString(); 
 
         alert(idno); 
-        if (type == 1065 || type == 1066)
-        {
+        
           jQuery(divStatus).html("Searching... <i class='fa fa-spinner fa-spin'></i>");
 
           jQuery.getJSON('<?php print caNavUrl($this->request, '*', '*', 'changeType'); ?>', {idno}, function(data) {    
@@ -135,12 +134,8 @@ print "</table><br><br><br><br><br><br><br>";
 
             roboto(idx + 1); 
           });
-        }
-        else
-        { 
-          jQuery(divStatus).html("");
-          roboto(idx + 1); 
-        }
+        
+      
 
       }
         

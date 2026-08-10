@@ -83,36 +83,37 @@ class ImportController extends ActionController {
 		$qr_result = $o_search->search('*');
 
 		*/
-		//$id = $this->request->getParameter('idno', pString); 
+		$id = $this->request->getParameter('idno', pString); 
 		
-		//$o_entity = new ca_occurrences($id);
+		$o_entity = new ca_occurrences($id);
 
-		//$o_entity->setMode(ACCESS_WRITE);		
-		//$type = $o_entity ->getWithTemplate('^ca_occurrences.tipo_exposicao', array('locale' => 'en_US'));
+		$o_entity->setMode(ACCESS_WRITE);		
+		$type = $o_entity ->getWithTemplate('^ca_occurrences.tipo_exposicao', array('locale' => 'en_US'));
 		
-		//if ($type === "Exposição produzida pelo MAC USP")
+		if ($type === "Exposição produzida pelo MAC USP")
 		{
 			//o_entity->replaceAttribute(array('madeMACUSP' => 'Exposição produzida pelo MAC USP'),'madeMACUSP');	
 		}
-		//if ($type === "Exhibition previous to MAC USP acquisition")
+		if ($type === "Exhibition previous to MAC USP acquisition")
 		{	
-			//$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
+			$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
 			
 		}
-		//if ($type === "Exhibition in other institution (loan)")
+		if ($type === "Exhibition in other institution (loan)")
 		{
-			//$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
+			$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
 		}
-		//$o_entity->update(); 
+		$o_entity->update(); 
 
-		//$o_entity2 = new ca_occurrences($id);
+		$o_entity2 = new ca_occurrences($id);
 
-		//$data = array(); 
+		$data = array(); 
 
-		//$data["results"] = $type." - ". $o_entity2->getWithTemplate("^ca_occurrences.madeMACUSP");
+		$data["results"] = $type." -> ". $o_entity2->getWithTemplate("^ca_occurrences.madeMACUSP");
 		
-		//$this->view->setVar('results', "->"$data);
-		
-		//$this->render("jsonresult.php");
+		$this->view->setVar('results', $data);
+
+		$this->render("jsonresult.php");
+	
 	}
 }
