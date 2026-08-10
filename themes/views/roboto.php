@@ -80,7 +80,7 @@ while ($o_items && $o_items->nextHit()) {
         <?php print $type_id; ?>      
       </td>
       <td>
-        <?php print "<div id='status-$cnt'> 123 </div>"; ?>
+        <?php print "<div id='status-$cnt'>  </div>"; ?>
       </td>
     </tr>
     <?php 
@@ -122,8 +122,8 @@ print "</table><br><br><br><br><br><br><br>";
         var idno = document.querySelector("#idno-" + idx.toString()).value.trim();        
         var divWikicode = "#wikicode-" + idx.toString(); 
         var divStatus = "#status-" + idx.toString(); 
-s
-        alert(idno + type); 
+
+        alert(idno); 
         if (type == 1065 || type == 1066)
         {
           jQuery(divStatus).html("Searching... <i class='fa fa-spinner fa-spin'></i>");
