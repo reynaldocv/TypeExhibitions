@@ -52,7 +52,7 @@ while($o_items && $o_items->nextHit()) {
   $idno = $o_items->get("ca_occurrences.idno"); 
   $name = $o_items->get("ca_occurrences.preferred_labels"); 
 
-  $typo_id = $o_items->get("ca_occurrences.tipo_exposicao"); 
+  $typo_id = $o_items ->getWithTemplate('^ca_occurrences.tipo_exposicao', array('locale' => 'en_US'));
   $type = $o_items->get("type_id");
   
   if (True)
