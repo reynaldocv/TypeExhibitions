@@ -53,7 +53,8 @@ while ($o_items && $o_items->nextHit()) {
   $idno = $o_items->get("ca_occurrences.idno"); 
   $name = $o_items->get("ca_occurrences.preferred_labels"); 
 
-  $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao', array('locale' => 'en_US'));
+  $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao');
+  $made = $o_items->getWithTemplate('^ca_occurrences.madeMACUSP');
   $type = $o_items->get("type_id");
   
   if ($type === "113")
@@ -80,7 +81,7 @@ while ($o_items && $o_items->nextHit()) {
         <?php print $type_id; ?>      
       </td>
       <td>
-        <?php print "<div id='status-$cnt'> $ </div>"; ?>
+        <?php print "<div id='status-$cnt'> $made </div>"; ?>
       </td>
     </tr>
     <?php 
