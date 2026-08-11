@@ -87,12 +87,13 @@ class ImportController extends ActionController {
 		
 		$o_entity = new ca_occurrences($id);
 
-		$o_entity->setMode(ACCESS_WRITE);		
+		$o_entity->setMode(ACCESS_WRITE);	
+
 		$type = $o_entity ->getWithTemplate('^ca_occurrences.tipo_exposicao', array('locale' => 'en_US'));
 		
 		if ($type === "Exhibition produced by MAC USP")
 		{
-			$o_entity->replaceAttribute(array('madeMACUSP' => 'MAC USP Exhibitions'),'madeMACUSP');	
+			$o_entity->replaceAttribute(array('madeMACUSP' => 'MACUSP Exhibitions'),'madeMACUSP');	
 		}
 		if ($type === "Exhibition previous to MAC USP acquisition")
 		{	
@@ -109,7 +110,7 @@ class ImportController extends ActionController {
 
 		$data = array(); 
 
-		$data["results"] = $type." -> ". $o_entity2->getWithTemplate("^ca_occurrences.madeMACUSP");
+		$data["results"] = "-> ". $o_entity2->getWithTemplate("^ca_occurrences.madeMACUSP");
 		
 		$this->view->setVar('results', $data);
 
