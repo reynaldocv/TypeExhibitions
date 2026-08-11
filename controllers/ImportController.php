@@ -91,22 +91,20 @@ class ImportController extends ActionController {
 
 		$type = $o_entity ->getWithTemplate('^ca_occurrences.tipo_exposicao', array('locale' => 'en_US'));
 		
-		if ($type === "Exhibition produced by MAC USP")
+		if ($type === "Exposição produzida pelo MAC USP")
 		{
 			$o_entity->replaceAttribute(array('madeMACUSP' => 'MACUSP Exhibitions'),'madeMACUSP');	
 		}
-		if ($type === "Exhibition previous to MAC USP acquisition")
+		if ($type === "Exposição anterior à incorporação ao MAC USP")
 		{	
 			$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
 			
 		}
-		if ($type === "Exhibition in other institution (loan)")
+		if ($type === "Exposição externa (empréstimo)")
 		{
 			$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
 		}
 
-		$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
-		
 		$o_entity->update(); 
 
 		$o_entity2 = new ca_occurrences($id);
