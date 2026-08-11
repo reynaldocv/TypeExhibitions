@@ -104,12 +104,6 @@ class ImportController extends ActionController {
 		{
 			$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
 		}
-
-<<<<<<< HEAD
-=======
-		$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
-		
->>>>>>> c02ab5cfebaf68390b7d010e05b7e269a437df1e
 		$o_entity->update(); 
 
 		$o_entity2 = new ca_occurrences($id);
