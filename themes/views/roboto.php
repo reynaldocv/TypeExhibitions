@@ -48,12 +48,12 @@ array('dontURLEncodeParameters' => true)); ?>
 */
 $cnt = 0; 
 
-while ($o_items && $o_items->nextHit() && $cnt < 100) {    
+while ($o_items && $o_items->nextHit() && $cnt < 1000) {    
   $id   = $o_items->get("ca_occurrences.occurrence_id");  
   $idno = $o_items->get("ca_occurrences.idno"); 
   $name = $o_items->get("ca_occurrences.preferred_labels"); 
 
-  $type_id = $o_items->getWithTemplate("^ca_occurrences.tipo_exposicao"); 
+  $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao', array('locale' => 'en_US'));
   $type = $o_items->get("type_id");
   
   if ($type === "113")
@@ -123,7 +123,7 @@ print "</table><br><br><br><br><br><br><br>";
         var divWikicode = "#wikicode-" + idx.toString(); 
         var divStatus = "#status-" + idx.toString(); 
 
-        alert(idno); 
+        
         
           jQuery(divStatus).html("Searching... <i class='fa fa-spinner fa-spin'></i>");
 

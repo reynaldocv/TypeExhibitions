@@ -90,9 +90,9 @@ class ImportController extends ActionController {
 		$o_entity->setMode(ACCESS_WRITE);		
 		$type = $o_entity ->getWithTemplate('^ca_occurrences.tipo_exposicao', array('locale' => 'en_US'));
 		
-		if ($type === "Exposição produzida pelo MAC USP")
+		if ($type === "Exhibition produced by MAC USP")
 		{
-			//o_entity->replaceAttribute(array('madeMACUSP' => 'Exposição produzida pelo MAC USP'),'madeMACUSP');	
+			$o_entity->replaceAttribute(array('madeMACUSP' => 'MAC USP Exhibitions'),'madeMACUSP');	
 		}
 		if ($type === "Exhibition previous to MAC USP acquisition")
 		{	
