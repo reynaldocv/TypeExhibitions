@@ -48,7 +48,7 @@ array('dontURLEncodeParameters' => true)); ?>
 */
 $cnt = 0; 
 
-while ($o_items && $o_items->nextHit() && $cnt < 2000) {    
+while ($o_items && $o_items->nextHit()) {    
   $id   = $o_items->get("ca_occurrences.occurrence_id");  
   $idno = $o_items->get("ca_occurrences.idno"); 
   $name = $o_items->get("ca_occurrences.preferred_labels"); 
