@@ -53,8 +53,8 @@ while ($o_items && $o_items->nextHit()) {
   $id   = $o_items->get("ca_occurrences.occurrence_id");  
   $idno = $o_items->get("ca_occurrences.idno"); 
   $name = $o_items->get("ca_occurrences.preferred_labels"); 
-  $type = $o_items->getTypeCode();
-  $exhibition = $o_items->getTypeCode();
+  //$type = $o_items->getTypeCode();
+  //$type_exhibition = $o_items->getTypeCode();
 
   $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao');
   $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao');
@@ -86,7 +86,7 @@ while ($o_items && $o_items->nextHit()) {
         <?php print $type; ?>      
       </td>
       <td>    
-        <?php print $exhibition; ?>      
+        <?php print $type_exhibition; ?>      
       </td>
       <td>
         <?php print "<div id='status-$cnt'> $made </div>"; ?>
