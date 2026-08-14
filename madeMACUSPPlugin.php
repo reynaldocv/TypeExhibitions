@@ -32,7 +32,7 @@
 		# -------------------------------------------------------
 		public function __construct($ps_plugin_path) {
 			$this->description = _t('Adds a "consulthor" menu listing all recently edited items');
-			$this->opo_config = Configuration::load($ps_plugin_path . DIRECTORY_SEPARATOR . 'conf' . DIRECTORY_SEPARATOR . 'consulthor.conf');
+			$this->opo_config = Configuration::load($ps_plugin_path . DIRECTORY_SEPARATOR . 'conf' . DIRECTORY_SEPARATOR . 'config.conf');
 
 			parent::__construct();
 			
@@ -55,14 +55,23 @@
 		 */
 		
 		public function hookRenderMenuBar($pa_menu_bar) {
+			
 			if ($o_req = $this->getRequest()) {
 			
 				$va_menu_items[] = array(
 					'displayName' => 'List of elements',
 					"default" => array(
-						'module' => 'TypeExhibitions', 
+						'module' => 'madeMACUSP', 
 						'controller' => 'Import', 
 						'action' => 'Index'
+					)
+				);	
+				$va_menu_items[] = array(
+					'displayName' => 'Config',
+					"default" => array(
+						'module' => 'madeMACUSP', 
+						'controller' => 'Import', 
+						'action' => 'test'
 					)
 				);	
 				
