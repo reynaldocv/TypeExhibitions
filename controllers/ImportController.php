@@ -83,10 +83,8 @@ class ImportController extends ActionController {
 		$qr_result = $o_search->search('*');
 
 		*/
-		$id = $this->request->getParameter('idno', pString); 
-		
+		$id = $this->request->getParameter('idno', pString); 		
 		$o_entity = new ca_occurrences($id);
-
 		$o_entity->setMode(ACCESS_WRITE);	
 
 		$type = $o_entity ->getWithTemplate('^ca_occurrences.tipo_exposicao', array('locale' => 'en_US'));
@@ -104,9 +102,6 @@ class ImportController extends ActionController {
 		{
 			$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
 		}
-
-		$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
-		
 
 		$o_entity->update(); 
 

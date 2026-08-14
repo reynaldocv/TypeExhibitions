@@ -30,7 +30,8 @@ $o_items = $this->getVar('items');
         <th>#</th>
         <th>ID</th>        
         <th>NAMES</th>
-        <th>type</th>
+        <th>TYPE</th>
+        <th>Exhibition</th>
         <th>Status</th>
         <th>New status</th>
       </tr>
@@ -52,7 +53,9 @@ while ($o_items && $o_items->nextHit()) {
   $id   = $o_items->get("ca_occurrences.occurrence_id");  
   $idno = $o_items->get("ca_occurrences.idno"); 
   $name = $o_items->get("ca_occurrences.preferred_labels"); 
+  $type = $o_items->getTypeCode();
 
+  $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao');
   $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao');
   $made = $o_items->getWithTemplate('^ca_occurrences.madeMACUSP');
   $type = $o_items->get("type_id");
@@ -78,6 +81,9 @@ while ($o_items && $o_items->nextHit()) {
       <td>        
         <?php print $idno; ?>      
       </td>  
+       <td>    
+        <?php print $type; ?>      
+      </td>
       <td>    
         <?php print $type_id; ?>      
       </td>
@@ -124,19 +130,17 @@ print "</table><br><br><br><br><br><br><br>";
         var idno = document.querySelector("#idno-" + idx.toString()).value.trim();        
         var divWikicode = "#wikicode-" + idx.toString(); 
         var divStatus = "#status-" + idx.toString(); 
-        alert(idno); 
-
         
-          jQuery(divStatus).html("Searching... <i class='fa fa-spinner fa-spin'></i>");
+        jQuery(divStatus).html("Searching... <i class='fa fa-spinner fa-spin'></i>");
 
-          jQuery.getJSON('<?php print caNavUrl($this->request, '*', '*', 'changeType'); ?>', {idno}, function(data) {    
-            var total = data['results'];   
-            
-            jQuery(divStatus).html(total);
+        jQuery.getJSON('<?php print caNavUrl($this->request, '*', '*', 'changeType'); ?>', {idno}, function(data) {    
+          var total = data['results'];   
+          
+          jQuery(divStatus).html(total);
 
-            roboto(idx + 1); 
-          });
-        
+          roboto(idx + 1); 
+        });
+      
       
 
       }
