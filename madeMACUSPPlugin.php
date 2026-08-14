@@ -26,7 +26,7 @@
  * ----------------------------------------------------------------------
  */
  
-	class TypeExhibitionsPlugin extends BaseApplicationPlugin {
+	class madeMACUSPPlugin extends BaseApplicationPlugin {
 		# -------------------------------------------------------
 		private $opo_config;
 		# -------------------------------------------------------
