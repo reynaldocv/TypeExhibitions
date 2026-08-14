@@ -100,17 +100,7 @@
 					if ($type === "Exposição externa (empréstimo)")
 					{
 						$po_item->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
-					}
-					$po_item->update(); 
-					
-					$v = $po_item->update(array('force' => true));
-
-					var_dump("Hola!!!");
-								
-					if (!$v) {
-						var_dump($t_item_lista->errors());
-						//exit();
-					}
+					}					
 				}
 			}
 			return $pa_params;
