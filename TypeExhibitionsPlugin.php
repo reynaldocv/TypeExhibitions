@@ -58,7 +58,7 @@
 			if ($o_req = $this->getRequest()) {
 				$config = $this->opo_config;
 				$showMenu = $config->get('showMenu');
-				if ($showMenu != 0) {
+				if ($showMenu != 1) {
 					return $pa_menu_bar;
 				}
 			
