@@ -81,7 +81,6 @@ class ImportController extends ActionController {
 	public function changeType() {		
 		/*$o_search = new EntitySearch();
 		$qr_result = $o_search->search('*');
-
 		*/
 		$id = $this->request->getParameter('idno', pString); 		
 		$o_entity = new ca_occurrences($id);
