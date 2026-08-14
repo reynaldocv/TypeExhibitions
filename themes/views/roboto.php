@@ -59,7 +59,7 @@ while ($o_items && $o_items->nextHit()) {
   $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao');
   $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao');
   $made = $o_items->getWithTemplate('^ca_occurrences.madeMACUSP');
-  $type = $o_items->get("type_id");
+  $type = $o_items->get("type");
   
   
   if (True)
