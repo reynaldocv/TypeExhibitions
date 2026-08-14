@@ -58,7 +58,7 @@ while ($o_items && $o_items->nextHit()) {
   $type = $o_items->get("type_id");
   $deleted = $o_items->get("deleted");
   
-  if ($deleted == 0)
+  if ($deleted === 0)
   {
     $cnt += 1;   
   ?> 
@@ -124,8 +124,8 @@ print "</table><br><br><br><br><br><br><br>";
         var idno = document.querySelector("#idno-" + idx.toString()).value.trim();        
         var divWikicode = "#wikicode-" + idx.toString(); 
         var divStatus = "#status-" + idx.toString(); 
+        alert(idno); 
 
-        
         
           jQuery(divStatus).html("Searching... <i class='fa fa-spinner fa-spin'></i>");
 
