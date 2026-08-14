@@ -91,16 +91,16 @@
 
 					if ($type === "Exposição produzida pelo MAC USP")
 					{
-						$o_entity->replaceAttribute(array('madeMACUSP' => 'MACUSP Exhibitions'),'madeMACUSP');	
+						$po_item->replaceAttribute(array('madeMACUSP' => 'MACUSP Exhibitions'),'madeMACUSP');	
 					}
 					if ($type === "Exposição anterior à incorporação ao MAC USP")
 					{	
-						$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
+						$po_item->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
 						
 					}
 					if ($type === "Exposição externa (empréstimo)")
 					{
-						$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
+						$po_item->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
 					}
 				}
 			}
