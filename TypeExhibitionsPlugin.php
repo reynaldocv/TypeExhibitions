@@ -78,6 +78,34 @@
 			
 			return $pa_menu_bar;
 		}
+		public function hookSaveItem($pa_params) {
+        // 1. Ensure the target table is ca_occurrences
+			if (isset($pa_params['table_name']) && $pa_params['table_name'] === 'ca_occurrences') {
+				
+				/** @var ca_occurrences $po_item */
+				$po_item = $pa_params['instance'];
+
+				// 2. Filter for occurrences of type 'exhibition'
+				if ($po_item && $po_item->getTypeCode() === 'exhibition') {
+					$type = $po_item->get('ca_occurrences.tipo_exposicao');
+
+					if ($type === "Exposição produzida pelo MAC USP")
+					{
+						$o_entity->replaceAttribute(array('madeMACUSP' => 'MACUSP Exhibitions'),'madeMACUSP');	
+					}
+					if ($type === "Exposição anterior à incorporação ao MAC USP")
+					{	
+						$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
+						
+					}
+					if ($type === "Exposição externa (empréstimo)")
+					{
+						$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
+					}
+				}
+			}
+			return $pa_params;
+		}		
 		# -------------------------------------------------------
 		static function getRoleActionList() {
 			
