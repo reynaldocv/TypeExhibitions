@@ -64,7 +64,7 @@
 			if ($o_req = $this->getRequest()) {
 			
 				$va_menu_items[] = array(
-					'displayName' => 'List of elements',
+					'displayName' => _t('Exhibitions'),
 					"default" => array(
 						'module' => 'madeMACUSP', 
 						'controller' => 'Import', 
