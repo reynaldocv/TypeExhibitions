@@ -55,6 +55,11 @@
 		 */
 		
 		public function hookRenderMenuBar($pa_menu_bar) {
+			$enabled = $this->opo_config->get('showMenu');
+			
+			if ($enabled === "no") {
+				return $pa_menu_bar;
+			}
 			
 			if ($o_req = $this->getRequest()) {
 			
