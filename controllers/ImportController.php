@@ -74,7 +74,7 @@ class ImportController extends ActionController {
 	public function Index() 
 	{		
 		$o_search = new OccurrenceSearch();
-		$o_items = $o_search->search("*");
+		$o_items = $o_search->search("type:exhibition");
 		$this->view->setVar('items', $o_items);		
 		$this->render("roboto.php");
 	}
