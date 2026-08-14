@@ -48,7 +48,7 @@ class ImportController extends ActionController {
 	 */
 	public function __construct(&$po_request, &$po_response, $pa_view_paths=null) {
 		// Set view path for plugin views directory
-		$name = "TypeExhibitions"; 
+		$name = "madeMACUSP"; 
 
 		if (!is_array($pa_view_paths)) { $pa_view_paths = array(); }
 		$pa_view_paths[] = __CA_APP_DIR__."/plugins/$name/themes/views/";
