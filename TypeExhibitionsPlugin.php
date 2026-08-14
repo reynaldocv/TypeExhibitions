@@ -102,6 +102,7 @@
 					{
 						$po_item->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
 					}
+					$po_item->update(); 
 				}
 			}
 			return $pa_params;
