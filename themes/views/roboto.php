@@ -52,17 +52,15 @@ $cnt = 0;
 while ($o_items && $o_items->nextHit()) {    
   $id   = $o_items->get("ca_occurrences.occurrence_id");  
   $idno = $o_items->get("ca_occurrences.idno"); 
-  $name = $o_items->get("ca_occurrences.preferred_labels"); 
-  ///$type = $o_items->getTypeCode();
-  ///$type_exhibition = $o_items->getTypeCode();
+  $name = $o_items->get("ca_occurrences.preferred_labels");   
+  $type = strToLower($o_items->getWithTemplate("^ca_occurrences.type_id")); 
 
   $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao');
-  $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao');
   $made = $o_items->getWithTemplate('^ca_occurrences.madeMACUSP');
-  $type = $o_items->get("type");
   
   
-  if (True)
+  
+  if ($type == "exhibition")
   {
     $cnt += 1;   
   ?> 
@@ -78,15 +76,15 @@ while ($o_items && $o_items->nextHit()) {
           print "$name" ;
         ?>
         <input type='hidden' id="idno-<?php print $cnt ?>" value="<?php print $id ?>"/>        
-      </td>      
+      </td>    
+       <td>    
+        <?php print $type; ?>      
+      </td>  
       <td>        
         <?php print $idno; ?>      
       </td>  
-       <td>    
-        <?php print $type; ?>      
-      </td>
       <td>    
-        <?php print $type_exhibition; ?>      
+        <?php print $type_id; ?>      
       </td>
       <td>
         <?php print "<div id='status-$cnt'> $made </div>"; ?>
