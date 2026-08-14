@@ -1,1 +1,3 @@
-This is a test...
+<?php 
+    var_dump($this->getVar("config"));    
+?>

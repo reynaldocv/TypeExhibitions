@@ -32,7 +32,7 @@
 		# -------------------------------------------------------
 		public function __construct($ps_plugin_path) {
 			$this->description = _t('Adds a "consulthor" menu listing all recently edited items');
-			$this->opo_config = Configuration::load($ps_plugin_path . DIRECTORY_SEPARATOR . 'conf' . DIRECTORY_SEPARATOR . 'config.conf');
+			$this->opo_config = Configuration::load($ps_plugin_path . DIRECTORY_SEPARATOR . 'conf' . DIRECTORY_SEPARATOR . 'consulthor.conf');
 
 			parent::__construct();
 			
@@ -56,11 +56,6 @@
 		
 		public function hookRenderMenuBar($pa_menu_bar) {
 			if ($o_req = $this->getRequest()) {
-				$config = $this->opo_config;
-				$showMenu = $config->get('showMenu');
-				if ($showMenu != 1) {
-					return $pa_menu_bar;
-				}
 			
 				$va_menu_items[] = array(
 					'displayName' => 'List of elements',
@@ -105,7 +100,8 @@
 					if ($type === "Exposição externa (empréstimo)")
 					{
 						$po_item->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
-					}					
+					}
+					
 				}
 			}
 			return $pa_params;
