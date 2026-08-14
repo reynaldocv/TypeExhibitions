@@ -95,8 +95,7 @@ class ImportController extends ActionController {
 		}
 		if ($type === "Exposição anterior à incorporação ao MAC USP")
 		{	
-			$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
-			
+			$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');				
 		}
 		if ($type === "Exposição externa (empréstimo)")
 		{
@@ -114,7 +113,6 @@ class ImportController extends ActionController {
 		$this->view->setVar('results', $data);
 
 		$this->render("jsonresult.php");
-	
 	}
 	public function test() 
 	{	
