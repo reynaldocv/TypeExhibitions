@@ -57,7 +57,7 @@ while ($o_items && $o_items->nextHit()) {
   $made = $o_items->getWithTemplate('^ca_occurrences.madeMACUSP');
   $type = $o_items->get("type_id");
   
-  if ($type === "113")
+  if (True)
   {
     $cnt += 1;   
   ?> 
