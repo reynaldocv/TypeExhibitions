@@ -87,7 +87,7 @@
 
 				// 2. Filter for occurrences of type 'exhibition'
 				if ($po_item && $po_item->getTypeCode() === 'exhibition') {
-					$type = $po_item->get('ca_occurrences.tipo_exposicao');
+					$type = $po_item->getWithTemplate('^ca_occurrences.tipo_exposicao');
 
 					if ($type === "Exposição produzida pelo MAC USP")
 					{
@@ -95,8 +95,7 @@
 					}
 					if ($type === "Exposição anterior à incorporação ao MAC USP")
 					{	
-						$po_item->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
-						
+						$po_item->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');							
 					}
 					if ($type === "Exposição externa (empréstimo)")
 					{
