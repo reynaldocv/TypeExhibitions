@@ -104,13 +104,10 @@ class ImportController extends ActionController {
 		$o_entity->update(); 
 
 		$o_entity2 = new ca_occurrences($id);
-
 		$data = array(); 
 
-		$data["results"] = "-> ". $o_entity2->getWithTemplate("^ca_occurrences.madeMACUSP");
-		
+		$data["results"] = " -> ". $o_entity2->getWithTemplate("^ca_occurrences.madeMACUSP");		
 		$this->view->setVar('results', $data);
-
 		$this->render("jsonresult.php");
 	}
 	public function test() 
