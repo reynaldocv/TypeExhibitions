@@ -100,7 +100,10 @@
 
 					$type = $po_item->getWithTemplate("^ca_occurrences.$prev_Parameter");
 
-					foreach ($values as [$prev, $next]) {
+					foreach ($values as $key => $value) {
+						$prev = $value["prev"]; 
+						$next = $value["next"]; 
+						
 						if ($type === $prev)
 						{
 							$po_item->replaceAttribute(array($next_Parameter => $next), $next_Parameter);								
