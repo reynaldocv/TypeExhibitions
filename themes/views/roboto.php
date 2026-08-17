@@ -53,7 +53,7 @@ while ($o_items && $o_items->nextHit()) {
   $id   = $o_items->get("ca_occurrences.occurrence_id");  
   $idno = $o_items->get("ca_occurrences.idno"); 
   $name = $o_items->get("ca_occurrences.preferred_labels");   
-  $type = strToLower($o_items->getWithTemplate("^ca_occurrences.type_id")); 
+  $type = trim(strToLower($o_items->getWithTemplate("^ca_occurrences.type_id"))); 
 
   $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao');
   $made = $o_items->getWithTemplate('^ca_occurrences.madeMACUSP');
@@ -79,7 +79,7 @@ while ($o_items && $o_items->nextHit()) {
         <input type='hidden' id="idno-<?php print $cnt ?>" value="<?php print $id ?>"/>        
       </td>    
        <td>    
-        <?php print $type; ?>      
+        <?php print "...".$type; ?>      
       </td>  
       <td>        
         <?php print $idno; ?>      
