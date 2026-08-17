@@ -92,20 +92,18 @@
 				$po_item = $pa_params['instance'];
 
 				// 2. Filter for occurrences of type 'exhibition'
+				$enabled = $this->opo_config->get('change');
 				if ($po_item && $po_item->getTypeCode() === 'exhibition') {
-					$type = $po_item->getWithTemplate('^ca_occurrences.tipo_exposicao');
+					$change = $this->opo_config->get('change');	
+					$prev_Parameter = $change["prevParameter"]; 
+					$next_Parameter = $change["nextParameter"]; 
+					$values = $change["values"]; 
 
-					if ($type === "Exposição produzida pelo MAC USP")
-					{
-						$po_item->replaceAttribute(array('madeMACUSP' => 'MACUSP Exhibitions'),'madeMACUSP');	
-					}
-					if ($type === "Exposição anterior à incorporação ao MAC USP")
-					{	
-						$po_item->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');							
-					}
-					if ($type === "Exposição externa (empréstimo)")
-					{
-						$po_item->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
+					foreach ($values as [$prev, $next]) {
+						if ($type === $prev)
+						{
+							$po_item->replaceAttribute(array($next_Parameter => $next),$next_Parameter);								
+						}
 					}
 					
 				}

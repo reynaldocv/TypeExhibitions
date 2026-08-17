@@ -64,6 +64,7 @@ while ($o_items && $o_items->nextHit()) {
   $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao');
   $made = $o_items->getWithTemplate('^ca_occurrences.madeMACUSP');
   
+  
   if ($type === $conf_type)  
   {
     $cnt += 1;   
