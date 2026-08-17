@@ -94,9 +94,9 @@ class ImportController extends ActionController {
 
 		$type = $o_entity ->getWithTemplate("^ca_occurrences.$prev_Parameter", array('locale' => 'en_US'));
 
-		//$o_entity->replaceAttribute(array($next_Parameter => Null),$next_Parameter);	
-		$o_entity->removeAttribute($next_Parameter);	
+		$o_entity->replaceAttribute(array($next_Parameter => "MACUSP exhibitions"),$next_Parameter);	
 		$o_entity->update(); 
+		//$o_entity->removeAttribute($next_Parameter);			
 
 		/*foreach ($values as [$prev, $next]) {
 			if ($type === $prev)
