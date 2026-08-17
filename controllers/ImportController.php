@@ -103,9 +103,7 @@ class ImportController extends ActionController {
 				$o_entity->update(); 
 			}
 		}
-		$o_entity->replaceAttribute(array($next_Parameter => "MACUSP Exhibitions"),$next_Parameter);	
-		$o_entity->update(); 
-				
+
 		$o_entity2 = new ca_occurrences($id);
 		$data = array(); 
 
