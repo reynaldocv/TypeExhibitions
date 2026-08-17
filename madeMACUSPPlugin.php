@@ -99,6 +99,8 @@
 					$next_Parameter = $change["nextParameter"]; 
 					$values = $change["values"]; 
 
+					$type = $po_item->getWithTemplate("^ca_occurrences.$prev_Parameter");
+
 					foreach ($values as [$prev, $next]) {
 						if ($type === $prev)
 						{
