@@ -70,21 +70,13 @@
 						'controller' => 'Import', 
 						'action' => 'Index'
 					)
-				);	
-				$va_menu_items[] = array(
-					'displayName' => 'Config',
-					"default" => array(
-						'module' => 'madeMACUSP', 
-						'controller' => 'Import', 
-						'action' => 'test'
-					)
-				);	
+				);				
 				
-				if (isset($pa_menu_bar['Change'])) {
-					$pa_menu_bar['Change']['Change'] = $va_menu_items;
+				if (isset($pa_menu_bar['madeMACUSP'])) {
+					$pa_menu_bar['madeMACUSP']['madeMACUSP'] = $va_menu_items;
 				} else {
-					$pa_menu_bar['Change'] = array(
-						'displayName' => 'Change',
+					$pa_menu_bar['madeMACUSP'] = array(
+						'displayName' => 'madeMACUSP',
 						'navigation' => $va_menu_items
 					);
 				}

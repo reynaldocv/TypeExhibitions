@@ -9,7 +9,8 @@ $conf_type = $o_config["type"];
 
 ?>
 
-<?php print "<h3>Lista de Exposições </h3>" ?>
+<?php print "<h3>Lista de Exposições </h3> " ?>
+     
   <div class="contenedor">
         
           <div class="control-box rounded">
@@ -20,6 +21,8 @@ $conf_type = $o_config["type"];
             </div>
             <div id="btn-ulan">              
               <input type="submit" value="Consultar" id="btn_consultar-ulan" onclick='roboto(1)'>
+              <div id="counter">
+              </div>
             </div>
           </div>                  
         <div id="resultado-ulan">
@@ -130,6 +133,7 @@ print "</table><br><br><br><br><br><br><br>";
         var idno = document.querySelector("#idno-" + idx.toString()).value.trim();        
         var divWikicode = "#wikicode-" + idx.toString(); 
         var divStatus = "#status-" + idx.toString(); 
+        var divCounter = "#counter"; 
 
         jQuery(divStatus).html("Searching... <i class='fa fa-spinner fa-spin'></i>");
 
@@ -137,6 +141,7 @@ print "</table><br><br><br><br><br><br><br>";
           var total = data['results'];   
           
           jQuery(divStatus).html(total);
+          jQuery(divCounter).html(idx +" / "+limit);
 
           roboto(idx + 1); 
         });
