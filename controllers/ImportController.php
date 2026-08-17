@@ -96,6 +96,7 @@ class ImportController extends ActionController {
 
 		//$o_entity->replaceAttribute(array($next_Parameter => Null),$next_Parameter);	
 		$o_entity->removeAttribute($next_Parameter);	
+		$o_entity->update(); 
 
 		/*foreach ($values as [$prev, $next]) {
 			if ($type === $prev)
