@@ -95,8 +95,10 @@ class ImportController extends ActionController {
 		$type = $o_entity ->getWithTemplate("^ca_occurrences.$prev_Parameter", array('locale' => 'en_US'));
 
 		//$o_entity->removeAttribute($next_Parameter);			
+		$string = ""; 
 
 		foreach ($values as [$prev, $next]) {
+			$string .= $prev." - ".$next." " ; 
 			if ($type === $prev)
 			{
     			$o_entity->replaceAttribute(array($next_Parameter => $next), $next_Parameter);	
@@ -107,8 +109,8 @@ class ImportController extends ActionController {
 		$o_entity2 = new ca_occurrences($id);
 		$data = array(); 
 
-		$data["results"] = " $ ". $o_entity2->getWithTemplate("^ca_occurrences.madeMACUSP");		
-		//$data["results"] = " -> ". $type;		
+		//$data["results"] = " $ ". $o_entity2->getWithTemplate("^ca_occurrences.madeMACUSP");		
+		$data["results"] = " -> ". $string;		
 		$this->view->setVar('results', $data);		
 		$this->render("jsonresult.php");
 	}
