@@ -61,7 +61,7 @@ while ($o_items && $o_items->nextHit()) {
   
   
   #if ($type === "exhibition")
-  if (True)
+  if ($type === "exhibition")
   {
     $cnt += 1;   
   ?> 
