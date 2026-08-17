@@ -99,7 +99,7 @@ class ImportController extends ActionController {
 		foreach ($values as [$prev, $next]) {
 			if ($type === $prev)
 			{
-    			$o_entity->replaceAttribute(array($next_Parameter => $next),$next_Parameter);	
+    			$o_entity->replaceAttribute(array($next_Parameter => "MACUSP exhibitions"),$next_Parameter);	
 				$o_entity->update(); 
 			}
 		}
