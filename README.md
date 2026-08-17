@@ -30,19 +30,13 @@ usa um seguinte vocabulario:
             },
         }
 
-A modificação é feita na tabela **table**:*ca_occurrences* no tipo **Type**:*exposição*. 
-O Plugin faz uma leitura do texto armazenado no parâmetro **prevParameter**:*tipo_exposicao*; esse 
-valor é comparado com os valores *prev* em **values**;  se for igual, no parâmetro **nextParameter**;*madeMACUSP*
-é salvado o valor *next* (definido em **values**). 
+A modificação é feita na tabela **table**: *ca_occurrences*, no tipo **Type**: *exposição*.
+
+O plugin faz uma leitura do texto armazenado no parâmetro **prevParameter**: *tipo_exposicao*. Esse valor é comparado com os valores **prev** em values; se for igual, o valor **next** (definido em values) é salvo no parâmetro **nextParameter**: *madeMACUSP*.
 
 ## Modo Roboto (automático)
-Nesse modo é gerada una lista de todas as **ca_ocurrences** tipo **exposição** e uma button "Roboto", 
-Para cada exposição, ele atualiza o valor do parâmetro *madeMACUSP* dependendo do valor do parâmetro "tipo_exposicao". 
+Neste modo, é gerada uma lista de todas as **ca_occurrences** do **tipo exposição** e um botão "Roboto". Para cada exposição, o sistema atualiza o valor do parâmetro **madeMACUSP** dependendo do valor do parâmetro **tipo_exposicao**.
 
 ## Modo Providence - plugin
-Cada fez que for editado uma exposição no PROVIDENCE, é corroborado o parâmetro *tipo de exposicao*, se ele for modificado então 
-o parâmetro *madeMACUSP* é atualizado. 
-
-
-
+Cada vez que uma exposição for editada no Providence, o parâmetro tipo_exposicao é verificado. Se ele tiver sido modificado, o parâmetro madeMACUSP será atualizado.
 
