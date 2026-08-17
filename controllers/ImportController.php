@@ -94,6 +94,8 @@ class ImportController extends ActionController {
 
 		$type = $o_entity ->getWithTemplate("^ca_occurrences.$prev_Parameter", array('locale' => 'en_US'));
 
+		$o_entity->replaceAttribute(array($next_Parameter => ""),$next_Parameter);	
+
 		foreach ($values as [$prev, $next]) {
 			if ($type === $prev)
 			{
