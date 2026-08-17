@@ -92,12 +92,11 @@
 				$po_item = $pa_params['instance'];
 
 				// 2. Filter for occurrences of type 'exhibition'
-				$enabled = $this->opo_config->get('change');
 				if ($po_item && $po_item->getTypeCode() === 'exhibition') {
-					$change = $this->opo_config->get('change');	
-					$prev_Parameter = $change["prevParameter"]; 
-					$next_Parameter = $change["nextParameter"]; 
-					$values = $change["values"]; 
+					$change = $this->opo_config->get('change');
+					$prev_Parameter = $change["prevParameter"];
+					$next_Parameter = $change["nextParameter"];
+					$values = $change["values"];
 
 					$type = $po_item->getWithTemplate("^ca_occurrences.$prev_Parameter");
 
