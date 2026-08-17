@@ -99,12 +99,13 @@
 					$values = $change["values"];
 
 					$type = $po_item->getWithTemplate("^ca_occurrences.$prev_Parameter");
+					$made = $po_item->getWithTemplate("^ca_occurrences.$next_Parameter");
 
 					foreach ($values as $key => $value) {
 						$prev = $value["prev"]; 
 						$next = $value["next"]; 
 						
-						if ($type === $prev)
+						if ($type === $prev && $made !== $next)
 						{
 							$po_item->replaceAttribute(array($next_Parameter => $next), $next_Parameter);								
 						}
