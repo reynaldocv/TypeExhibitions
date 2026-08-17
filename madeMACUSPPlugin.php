@@ -92,7 +92,8 @@
 				$po_item = $pa_params['instance'];
 
 				// 2. Filter for occurrences of type 'exhibition'
-				$enabled = $this->opo_config->get('change');
+				$change = $this->opo_config->get('change');
+				
 				if ($po_item && $po_item->getTypeCode() === 'exhibition') {
 					$change = $this->opo_config->get('change');	
 					$prev_Parameter = $change["prevParameter"]; 
@@ -104,7 +105,7 @@
 					foreach ($values as [$prev, $next]) {
 						if ($type === $prev)
 						{
-							$po_item->replaceAttribute(array($next_Parameter => $next),$next_Parameter);								
+							$po_item->replaceAttribute(array($next_Parameter => $next), $next_Parameter);								
 						}
 					}
 					
