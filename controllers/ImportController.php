@@ -97,8 +97,10 @@ class ImportController extends ActionController {
 		//$o_entity->removeAttribute($next_Parameter);			
 		$string = ""; 
 
-		foreach ($values as [$prev, $next]) {
-			$string .= $prev." - ".$next." " ; 
+		foreach ($values as $key => $value) {
+			$prev = $value["prev"]; 
+			$next = $value["next"]; 
+			
 			if ($type === $prev)
 			{
     			$o_entity->replaceAttribute(array($next_Parameter => $next), $next_Parameter);	
@@ -107,8 +109,8 @@ class ImportController extends ActionController {
 		}
 
 		$o_entity2 = new ca_occurrences($id);
+		
 		$data = array(); 
-
 		//$data["results"] = " $ ". $o_entity2->getWithTemplate("^ca_occurrences.madeMACUSP");		
 		$data["results"] = " -> ". $string;		
 		$this->view->setVar('results', $data);		
@@ -130,7 +132,7 @@ class ImportController extends ActionController {
 	}
 	public function test() 
 	{	
-		$this->view->setVar('config', $this->opo_config);		
-		$this->render("test.php");
+		$this->view->setVar('config', $this->opo_config->get('change'));		
+		$this->render("test2.php");
 	}
 }
