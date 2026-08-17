@@ -75,7 +75,8 @@ class ImportController extends ActionController {
 	{		
 		$o_search = new OccurrenceSearch();
 		$o_items = $o_search->search("type:exhibition");
-		$this->view->setVar('items', $o_items);		
+		$this->view->setVar('items', $o_items);			
+		$this->view->setVar('config', $this->opo_config->get('change'));	
 		$this->render("roboto.php");
 	}
 	public function changeType() {		
@@ -86,28 +87,40 @@ class ImportController extends ActionController {
 		$o_entity = new ca_occurrences($id);
 		$o_entity->setMode(ACCESS_WRITE);	
 
-		$type = $o_entity ->getWithTemplate('^ca_occurrences.tipo_exposicao', array('locale' => 'en_US'));
-		
-		if ($type === "Exposição produzida pelo MAC USP")
-		{
-			$o_entity->replaceAttribute(array('madeMACUSP' => 'MACUSP Exhibitions'),'madeMACUSP');	
-		}
-		if ($type === "Exposição anterior à incorporação ao MAC USP")
-		{	
-			$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');				
-		}
-		if ($type === "Exposição externa (empréstimo)")
-		{
-			$o_entity->replaceAttribute(array('madeMACUSP' => 'Exhibitions from other institutions'),'madeMACUSP');	
-		}
+		$change = $this->opo_config->get('change');	
+		$prev_Parameter = $change["prevParameter"]; 
+		$next_Parameter = $change["nextParameter"]; 
+		$values = $change["values"]; 
 
-		$o_entity->update(); 
+		$type = $o_entity ->getWithTemplate("^ca_occurrences.$prev_Parameter", array('locale' => 'en_US'));
 
+		foreach ($values as [$prev, $next]) {
+			if ($type === $prev)
+			{
+    			$o_entity->replaceAttribute(array($next_Parameter => $next),$next_Parameter);	
+				$o_entity->update(); 
+			}
+		}
+				
 		$o_entity2 = new ca_occurrences($id);
 		$data = array(); 
 
 		$data["results"] = " -> ". $o_entity2->getWithTemplate("^ca_occurrences.madeMACUSP");		
-		$this->view->setVar('results', $data);
+		$this->view->setVar('results', $data);		
+		$this->render("jsonresult.php");
+	}
+	public function changeTest() {		
+		/*$o_search = new EntitySearch();
+		$qr_result = $o_search->search('*');
+		*/
+		#$id = $this->request->getParameter('idno', pString); 				
+
+		#$o_entity2 = new ca_occurrences($id);
+		#$data = array(); 
+
+		#$data["results"] = " -> ". $o_entity2->getWithTemplate("^ca_occurrences.madeMACUSP");		
+		$data["results"] = " -> Hola";		
+		$this->view->setVar('results', $data);		
 		$this->render("jsonresult.php");
 	}
 	public function test() 

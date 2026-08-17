@@ -3,7 +3,10 @@
 
 $count = 0;
 $o_items = $this->getVar('items');
-//var_dump($o_items); 
+$o_config = $this->getVar('config');
+$conf_type = $o_config["type"];
+
+
 ?>
 
 <?php print "<h3>Lista de Exposições </h3>" ?>
@@ -58,10 +61,7 @@ while ($o_items && $o_items->nextHit()) {
   $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao');
   $made = $o_items->getWithTemplate('^ca_occurrences.madeMACUSP');
   
-  
-  
-  #if ($type === "exhibition")
-  if (True)
+  if ($type === $conf_type)  
   {
     $cnt += 1;   
   ?> 
@@ -79,7 +79,7 @@ while ($o_items && $o_items->nextHit()) {
         <input type='hidden' id="idno-<?php print $cnt ?>" value="<?php print $id ?>"/>        
       </td>    
        <td>    
-        <?php print "...".$type; ?>      
+        <?php print $type; ?>      
       </td>  
       <td>        
         <?php print $idno; ?>      
@@ -130,7 +130,7 @@ print "</table><br><br><br><br><br><br><br>";
         var idno = document.querySelector("#idno-" + idx.toString()).value.trim();        
         var divWikicode = "#wikicode-" + idx.toString(); 
         var divStatus = "#status-" + idx.toString(); 
-        
+
         jQuery(divStatus).html("Searching... <i class='fa fa-spinner fa-spin'></i>");
 
         jQuery.getJSON('<?php print caNavUrl($this->request, '*', '*', 'changeType'); ?>', {idno}, function(data) {    
