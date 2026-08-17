@@ -16,6 +16,6 @@
 		$prev = $value["prev"]; 
 		$next = $value["next"]; 
 
-		print $key." - ".$prev."<br>"; 			
+		print $prev." - ".$next."<br>"; 			
 	}
 ?>
