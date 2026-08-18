@@ -100,6 +100,7 @@ class ImportController extends ActionController {
 		$values = $change["values"]; 
 
 		$type = $o_entity ->get("ca_occurrences.$prev_Parameter");
+		$made = $o_entity ->get("ca_occurrences.$next_Parameter");
 
 		//$o_entity->removeAttribute($next_Parameter);			
 		$string = ""; 
@@ -108,7 +109,7 @@ class ImportController extends ActionController {
 			$prev = ca_lists::getItemIDLabel($prev_Parameter, $value["prev"]); 
 			$next = ca_lists::getItemIDLabel($next_Parameter, $value["next"]); 
 			
-			if ($prev == $type)
+			if ($prev == $type && $next != $made) 
 			{
     			$o_entity->replaceAttribute(array($next_Parameter => $next), $next_Parameter);	
 				$o_entity->update(); 
