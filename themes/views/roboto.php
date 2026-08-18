@@ -6,6 +6,9 @@ $o_items = $this->getVar('items');
 $o_config = $this->getVar('config');
 $conf_type = $o_config["type"];
 
+$type_option = ca_lists::getItemID('occurrence_types', $conf_type);
+
+print $type_option; 
 
 ?>
 
@@ -55,17 +58,21 @@ array('dontURLEncodeParameters' => true)); ?>
 */
 $cnt = 0; 
 
+
+
 while ($o_items && $o_items->nextHit()) {    
   $id   = $o_items->get("ca_occurrences.occurrence_id");  
   $idno = $o_items->get("ca_occurrences.idno"); 
-  $name = $o_items->get("ca_occurrences.preferred_labels");   
-  $type = trim(strToLower($o_items->getWithTemplate("^ca_occurrences.type_id"))); 
+  $name = $o_items->get("ca_occurrences.preferred_labels");  
 
-  $type_id = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao');
-  $made = $o_items->getWithTemplate('^ca_occurrences.madeMACUSP');
-  
-  
-  if ($type === $conf_type)  
+  $type_code = $o_items->get("ca_occurrences.type_id"); 
+  $type_label = $o_items->getWithTemplate("^ca_occurrences.type_id"); 
+
+  $exhibition_code = $o_items->get('ca_occurrences.tipo_exposicao');
+  $exhibition_label = $o_items->getWithTemplate('^ca_occurrences.tipo_exposicao');
+  $made = $o_items->getWithTemplate('^ca_occurrences.madeMACUSP');  
+
+  if ($type_code == $type_option)  
   {
     $cnt += 1;   
   ?> 
@@ -83,13 +90,13 @@ while ($o_items && $o_items->nextHit()) {
         <input type='hidden' id="idno-<?php print $cnt ?>" value="<?php print $id ?>"/>        
       </td>    
        <td>    
-        <?php print $type; ?>      
+        <?php print $type_label; ?>      
       </td>  
       <td>        
         <?php print $idno; ?>      
       </td>  
       <td>    
-        <?php print $type_id; ?>      
+        <?php print $exhibition_label; ?>      
       </td>
       <td>
         <?php print "<div id='status-$cnt'> $made </div>"; ?>

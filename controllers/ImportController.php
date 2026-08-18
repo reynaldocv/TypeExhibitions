@@ -72,11 +72,18 @@ class ImportController extends ActionController {
 	 *
 	 */
 	public function Index() 
-	{		
+	{	
+		$change = $this->opo_config->get('change'); 
+		$type = $change["type"]; 
+
 		$o_search = new OccurrenceSearch();
-		$o_items = $o_search->search("type:exhibition");
+		
+		$o_items = $o_search->search("type:$type");
+
 		$this->view->setVar('items', $o_items);			
 		$this->view->setVar('config', $this->opo_config->get('change'));	
+		$this->view->setVar('type', ca_lists::getItemID('occurrence_types', $type));	
+
 		$this->render("roboto.php");
 	}
 	public function changeType() {		
@@ -92,16 +99,16 @@ class ImportController extends ActionController {
 		$next_Parameter = $change["nextParameter"]; 
 		$values = $change["values"]; 
 
-		$type = $o_entity ->getWithTemplate("^ca_occurrences.$prev_Parameter", array('locale' => 'en_US'));
+		$type = $o_entity ->get("ca_occurrences.$prev_Parameter");
 
 		//$o_entity->removeAttribute($next_Parameter);			
 		$string = ""; 
 
 		foreach ($values as $key => $value) {
-			$prev = $value["prev"]; 
-			$next = $value["next"]; 
+			$prev = ca_lists::getItemIDLabel($prev_Parameter, $value["prev"]); 
+			$next = ca_lists::getItemIDLabel($next_Parameter, $value["next"]); 
 			
-			if ($type === $prev)
+			if ($prev == $type)
 			{
     			$o_entity->replaceAttribute(array($next_Parameter => $next), $next_Parameter);	
 				$o_entity->update(); 
@@ -111,8 +118,8 @@ class ImportController extends ActionController {
 		$o_entity2 = new ca_occurrences($id);
 		
 		$data = array(); 
-		$data["results"] = " $ ". $o_entity2->getWithTemplate("^ca_occurrences.$next_Parameter");		
-		//$data["results"] = " -> ". $string;		
+		//$data["results"] = " $ ". $o_entity2->getWithTemplate("^ca_occurrences.$next_Parameter");		
+		$data["results"] = " -> ". $code;		
 		$this->view->setVar('results', $data);		
 		$this->render("jsonresult.php");
 	}
