@@ -95,32 +95,33 @@ class ImportController extends ActionController {
 		$o_entity->setMode(ACCESS_WRITE);	
 
 		$change = $this->opo_config->get('change');	
+
 		$prev_Parameter = $change["prevParameter"]; 
 		$next_Parameter = $change["nextParameter"]; 
 		$values = $change["values"]; 
 
-		$type = $o_entity ->get("ca_occurrences.$prev_Parameter");
-		$made = $o_entity ->get("ca_occurrences.$next_Parameter");
+		$type = $o_entity->get("ca_occurrences.$prev_Parameter");
+		$made = $o_entity->get("ca_occurrences.$next_Parameter");
 
 		//$o_entity->removeAttribute($next_Parameter);			
 		$string = ""; 
 
-		foreach ($values as $key => $value) {
-			$prev = ca_lists::getItemIDLabel($prev_Parameter, $value["prev"]); 
-			$next = ca_lists::getItemIDLabel($next_Parameter, $value["next"]); 
+		foreach ($values as $key => $value) {			
+			$prev = ca_lists::getItemID($prev_Parameter, $value["prev"]); 
+			$next = ca_lists::getItemID($next_Parameter, $value["next"]); 
 			
 			if ($prev == $type && $next != $made) 
 			{
     			$o_entity->replaceAttribute(array($next_Parameter => $next), $next_Parameter);	
 				$o_entity->update(); 
-			}
+			}			
 		}
 
 		$o_entity2 = new ca_occurrences($id);
 		
 		$data = array(); 
-		//$data["results"] = " $ ". $o_entity2->getWithTemplate("^ca_occurrences.$next_Parameter");		
-		$data["results"] = " -> ". $code;		
+		$data["results"] = " $ ". $o_entity2->getWithTemplate("^ca_occurrences.$next_Parameter");		
+		//$data["results"] = " -> ". $code;		
 		$this->view->setVar('results', $data);		
 		$this->render("jsonresult.php");
 	}
