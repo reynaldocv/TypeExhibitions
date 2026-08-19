@@ -94,6 +94,7 @@
 				// 2. Filter for occurrences of type 'exhibition'
 				if ($po_item && $po_item->getTypeCode() === 'exhibition') {
 					$change = $this->opo_config->get('change');
+
 					$prev_Parameter = $change["prevParameter"];
 					$next_Parameter = $change["nextParameter"];
 					$values = $change["values"];
@@ -102,10 +103,10 @@
 					$made = $po_item->get("ca_occurrences.$next_Parameter");
 
 					foreach ($values as $key => $value) {
-						$prev = $value["prev"]; 
-						$next = $value["next"]; 
-						
-						if ($type == $prev && $made != $next)
+						$prev = ca_lists::getItemID($prev_Parameter, $value["prev"]); 
+						$next = ca_lists::getItemID($next_Parameter, $value["next"]); 
+			
+						if ($prev == $type && $next != $made) 
 						{
 							$po_item->replaceAttribute(array($next_Parameter => $next), $next_Parameter);								
 						}
